@@ -26,8 +26,8 @@ cartpole
 ```
 
 ## Controls to implement
-* [ ] PID Control
-* [ ] MPC Control
-* [ ] Q Learning (DQN)
-* [ ] Policy Gradient (PPO)
-* [ ] Soft Actor-Critic (SAC)
+* [ ] PID (Simplest Control, Just works in many cases)
+* [ ] MPC (Receding horizon optimal control, Go to classical control approach for most robotics problems)
+* [ ] DQN (Simple, Sample Efficient, First approach to show good results on atari games)
+* [ ] PPO (Go to approach for most of the robotics control problem in simulator, Wall clock time efficient)
+* [ ] SAC (Sample Efficient)
