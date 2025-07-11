@@ -1,7 +1,9 @@
-#autoux
+# venv
 .venv
-data
-runs
+
+# Mujoco
+MJDATA.TXT
+MUJOCO_LOG.TXT
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
