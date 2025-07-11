@@ -4,6 +4,7 @@ import argparse
 
 import mujoco
 import mujoco.viewer
+from cartpole.agents.pid import PID
 
 
 class Rate:
@@ -23,28 +24,64 @@ class Rate:
         self.__time = self.now()
 
 
-def main():
-    parser = argparse.ArgumentParser(description='CartPole simulation')
-    model = mujoco.MjModel.from_xml_path("cartpole.xml")
-    data = mujoco.MjData(model)
-    control_hz = 1/model.opt.timestep
+class Cartpole:
+    def __init__(self):
+        self.model = mujoco.MjModel.from_xml_path("cartpole.xml")
+        self.data = mujoco.MjData(self.model)
+        self.control_hz = 1/self.model.opt.timestep
 
-    with mujoco.viewer.launch_passive(
-        model,
-        data,
-        show_left_ui=False,
-        show_right_ui=False
-    ) as viewer:
-        rate = Rate(control_hz)
-        while viewer.is_running():
-            mujoco.mj_step(model, data)
-            
-            slider_pos = data.qpos[0]
-            hinge_angle = -data.qpos[1]
-            print(f"Slider position: {slider_pos:.3f}, Pole angle: {hinge_angle:.3f}")
-            
-            viewer.sync()
-            rate.sleep()
+    def cmd(self, cmd):
+        self.data.ctrl[0] = cmd
+
+    def get_observation(self):
+        cart_pos = self.data.qpos[0]
+        pole_angle = -self.data.qpos[1]
+        cart_vel = self.data.qvel[0]
+        pole_angular_vel = -self.data.qvel[1]
+        return cart_pos, pole_angle, cart_vel, pole_angular_vel
+
+    def control_loop(self, agent):
+        with mujoco.viewer.launch_passive(
+            self.model,
+            self.data,
+            show_left_ui=False,
+            show_right_ui=False
+        ) as viewer:
+            rate = Rate(self.control_hz)
+            while viewer.is_running():
+                cart_pos, pole_angle, cart_vel, pole_angular_vel = self.get_observation()
+                action = agent.get_cmd(cart_pos, pole_angle, cart_vel, pole_angular_vel)
+                self.cmd(action)
+
+                mujoco.mj_step(self.model, self.data)
+
+                print(f"Cart pos: {cart_pos:.3f}, Cart vel: {cart_vel:.3f}, Pole angle: {pole_angle:.3f}, Pole angular vel: {pole_angular_vel:.3f}")
+
+                viewer.sync()
+                rate.sleep()
+
+
+def main():
+    parser = argparse.ArgumentParser(description='CartPole control')
+    parser.add_argument('--agent', type=str, required=True,
+                       choices=['PID', 'MPC', 'DQN', 'PPO', 'SAC'],
+                       help='Control agent to use')
+    args = parser.parse_args()
+
+    # Instantiate agent
+    if args.agent == 'PID':
+        agent = PID()
+    elif args.agent == 'MPC':
+        raise NotImplementedError("MPC agent not implemented yet")
+    elif args.agent == 'DQN':
+        raise NotImplementedError("DQN agent not implemented yet")
+    elif args.agent == 'PPO':
+        raise NotImplementedError("PPO agent not implemented yet")
+    elif args.agent == 'SAC':
+        raise NotImplementedError("SAC agent not implemented yet")
+
+    cartpole = Cartpole()
+    cartpole.control_loop(agent)
 
 
 if __name__ == '__main__':
