@@ -7,8 +7,14 @@ name = "cartpole"
 version = "0.0.0"
 requires-python = ">=3.8"
 dependencies = [
-  "mujoco==3.2.2"
+  "mujoco==3.2.2",
+  "numpy>=1.20.0",
+  "Pillow>=9.0.0"
 ]
+
+[tool.setuptools.packages.find]
+include = ["cartpole*"]
+exclude = ["imgs*"]
 
 [project.optional-dependencies]
 dev = []

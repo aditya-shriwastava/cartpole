@@ -46,8 +46,11 @@ cartpole --help
 5. World model: Assume not known
 
 ## Controls to implement
-* [ ] PID (Simplest Control, Just works in many cases)
+* [x] PID (Simplest Control, Just works in many cases)
 * [ ] MPC (Receding horizon optimal control, Go to classical control approach for most robotics problems)
 * [ ] DQN (Simple, Sample Efficient, First approach to show good results on atari games)
 * [ ] PPO (Go to approach for most of the robotics control problem in simulator, Wall clock time efficient)
 * [ ] SAC (Sample Efficient)
+
+## Results
+![PID Agent Demo | Reward: 272](imgs/pid.gif)

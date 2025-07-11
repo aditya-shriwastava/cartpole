@@ -11,4 +11,3 @@ class Agent(ABC):
         pole_angular_vel: float
     ) -> float:
         pass
-
