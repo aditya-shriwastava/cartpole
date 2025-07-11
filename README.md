@@ -22,7 +22,7 @@ pip install .
 4. **Usage**
 After installation, you can run cartpole with:
 ```bash
-cartpole
+cartpole --help
 ```
 
 ## MDP problem formulation

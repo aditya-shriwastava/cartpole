@@ -29,6 +29,7 @@ class Cartpole:
         self.model = mujoco.MjModel.from_xml_path("cartpole.xml")
         self.data = mujoco.MjData(self.model)
         self.control_hz = 1/self.model.opt.timestep
+        self.reward = 0;
 
     def cmd(self, cmd):
         self.data.ctrl[0] = cmd
@@ -50,6 +51,12 @@ class Cartpole:
             rate = Rate(self.control_hz)
             while viewer.is_running():
                 cart_pos, pole_angle, cart_vel, pole_angular_vel = self.get_observation()
+                if abs(pole_angle) > 0.2:
+                    print(f"|pose_angle| > 0.2, terminating. Total reward collected: {self.reward}")
+                    break
+                else:
+                    self.reward += 1
+
                 action = agent.get_cmd(cart_pos, pole_angle, cart_vel, pole_angular_vel)
                 self.cmd(action)
 
