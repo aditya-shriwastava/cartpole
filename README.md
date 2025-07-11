@@ -53,5 +53,10 @@ cartpole --help
 * [ ] SAC (Sample Efficient)
 
 ## Results
-![PID Agent Demo](imgs/pid.gif)
-*Reward: 272*
+
+### PID
+<div align="center">
+  <img src="imgs/pid.gif" alt="PID Controller Demo" width="600"/>
+  <br>
+  <em><strong>Reward Achieved: 272 timesteps</strong></em>
+</div>
