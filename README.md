@@ -53,4 +53,5 @@ cartpole --help
 * [ ] SAC (Sample Efficient)
 
 ## Results
-![PID Agent Demo | Reward: 272](imgs/pid.gif)
+![PID Agent Demo](imgs/pid.gif)
+*Reward: 272*
