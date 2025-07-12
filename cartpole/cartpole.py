@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 import time
 import argparse
 import os
@@ -109,11 +110,11 @@ class Cartpole:
             rate = Rate(self.control_hz)
             while viewer.is_running():
                 cart_pos, pole_angle, cart_vel, pole_angular_vel = self.get_observation()
-                if abs(pole_angle) > 0.2:
-                    print(f"|pose_angle| > 0.2, terminating. Total reward collected: {self.reward}")
+                if abs(pole_angle) > math.pi/4:
+                    print(f"|pose_angle| > pi/4, terminating. Total reward collected: {self.reward}")
                     viewer.close()
                     break
-                else:
+                elif abs(pole_angle) <= 0.2:
                     self.reward += 1
 
                 cmd = agent.get_cmd(cart_pos, pole_angle, cart_vel, pole_angular_vel)
