@@ -60,6 +60,7 @@ cartpole --help
   <br>
   <em><strong>Reward Achieved: 272</strong></em>
 </div>
+
 ### MPC
 <div align="center">
   <img src="imgs/mpc.gif" alt="MPC Agent Demo" width="600"/>
