@@ -11,6 +11,7 @@ import numpy as np
 from PIL import Image
 
 from cartpole.agents.pid import PID
+from cartpole.agents.mpc import MPC
 
 
 class Rate:
@@ -31,8 +32,9 @@ class Rate:
 
 
 class Cartpole:
-    def __init__(self, create_gif: bool = False):
+    def __init__(self, create_gif: bool = False, verbose: bool = False):
         self.create_gif = create_gif
+        self.verbose = verbose
 
         self.model = mujoco.MjModel.from_xml_path("cartpole.xml")
         self.data = mujoco.MjData(self.model)
@@ -111,7 +113,7 @@ class Cartpole:
             while viewer.is_running():
                 cart_pos, pole_angle, cart_vel, pole_angular_vel = self.get_observation()
                 if abs(pole_angle) > math.pi/4:
-                    print(f"|pose_angle| > pi/4, terminating. Total reward collected: {self.reward}")
+                    print(f"|pose_angle| > pi/4, terminating!")
                     viewer.close()
                     break
                 elif abs(pole_angle) <= 0.2:
@@ -122,7 +124,8 @@ class Cartpole:
 
                 mujoco.mj_step(self.model, self.data)
 
-                print(f"Cart pos: {cart_pos:.3f}, Cart vel: {cart_vel:.3f}, Pole angle: {pole_angle:.3f}, Pole angular vel: {pole_angular_vel:.3f}, Force applied: {cmd:.3f}")
+                if self.verbose:
+                    print(f"Cart pos: {cart_pos:.3f}, Cart vel: {cart_vel:.3f}, Pole angle: {pole_angle:.3f}, Pole angular vel: {pole_angular_vel:.3f}, Force applied: {cmd:.3f}")
 
                 # Increment control cycle counter
                 self.control_cycle_count += 1
@@ -133,6 +136,7 @@ class Cartpole:
                 viewer.sync()
                 rate.sleep()
 
+            print(f"Total reward collected: {self.reward}")
             # Save GIF if recording was enabled
             if self.create_gif:
                 self.save_gif()
@@ -141,17 +145,19 @@ class Cartpole:
 def main():
     parser = argparse.ArgumentParser(description='CartPole control')
     parser.add_argument('--agent', type=str, required=True,
-                       choices=['PID', 'MPC', 'DQN', 'PPO', 'SAC'],
+                       choices=['PID', 'MPC', 'MPC_ROBUST', 'DQN', 'PPO', 'SAC'],
                        help='Control agent to use')
     parser.add_argument('--create-gif', action='store_true',
                        help='Record episode as GIF (max 10 seconds)')
+    parser.add_argument('--verbose', action='store_true',
+                       help='Print detailed output during simulation')
     args = parser.parse_args()
 
     # Instantiate agent
     if args.agent == 'PID':
         agent = PID()
     elif args.agent == 'MPC':
-        raise NotImplementedError("MPC agent not implemented yet")
+        agent = MPC()
     elif args.agent == 'DQN':
         raise NotImplementedError("DQN agent not implemented yet")
     elif args.agent == 'PPO':
@@ -159,7 +165,7 @@ def main():
     elif args.agent == 'SAC':
         raise NotImplementedError("SAC agent not implemented yet")
 
-    cartpole = Cartpole(create_gif=args.create_gif)
+    cartpole = Cartpole(create_gif=args.create_gif, verbose=args.verbose)
     cartpole.control_loop(agent)
 
 

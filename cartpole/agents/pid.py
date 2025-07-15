@@ -1,5 +1,6 @@
 from cartpole.agent import Agent
 
+
 class PID(Agent):
     def __init__(self):
         # PID gains for pole angle control
