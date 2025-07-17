@@ -79,3 +79,17 @@ train-dqn --help # Similarly for PPO & SAC
   <br>
   <em><strong>Reward Achieved: inf</strong></em>
 </div>
+
+### PPO
+<div align="center">
+  <img src="imgs/ppo.gif" alt="PPO Agent Demo" width="600"/>
+  <br>
+  <em><strong>Reward Achieved: inf</strong></em>
+</div>
+
+### SAC
+<div align="center">
+  <img src="imgs/sac.gif" alt="SAC Agent Demo" width="600"/>
+  <br>
+  <em><strong>Reward Achieved: inf</strong></em>
+</div>

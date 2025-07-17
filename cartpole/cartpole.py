@@ -13,6 +13,8 @@ from PIL import Image
 from cartpole.agents.pid import PID
 from cartpole.agents.mpc import MPC
 from cartpole.agents.dqn import DQN
+from cartpole.agents.ppo import PPO
+from cartpole.agents.sac import SAC
 
 
 class Rate:
@@ -172,9 +174,9 @@ def main():
     elif args.agent == 'DQN':
         agent = DQN()
     elif args.agent == 'PPO':
-        raise NotImplementedError("PPO agent not implemented yet")
+        agent = PPO()
     elif args.agent == 'SAC':
-        raise NotImplementedError("SAC agent not implemented yet")
+        agent = SAC()
 
     cartpole = Cartpole(save_gif=args.save_gif, verbose=args.verbose)
     cartpole.control_loop(agent)
