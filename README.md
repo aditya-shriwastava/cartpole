@@ -25,6 +25,11 @@ After installation, you can run cartpole with:
 cartpole --help
 ```
 
+4. **Training RL agents**
+```bash
+train-dqn --help # Similarly for PPO & SAC
+```
+
 ## MDP problem formulation
 1. Action Space:
     * Continuous in range [-3,3]
@@ -43,7 +48,7 @@ cartpole --help
     * Pole angel: 0.0
     * Cart velocity: 0.0
     * Pole angular velocity: 0.0
-5. World model: Assume not known
+5. World model: Assume not known in all the cases except MPC
 
 ## Controls to implement
 * [x] PID (Simplest Control, Just works in many cases)

@@ -25,3 +25,4 @@ dev = []
 
 [project.scripts]
 cartpole = "cartpole.cartpole:main"
+train-dqn = "cartpole.agents.dqn:main"

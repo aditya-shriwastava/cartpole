@@ -130,7 +130,7 @@ class Cartpole:
 
                 if self.verbose:
                     print(
-                        f"[dt: {et-st}s] " +
+                        f"[dt: {int((et-st) * 1000)}ms] " +
                         f"Cart pos: {cart_pos:.3f}m, " +
                         f"Cart vel: {cart_vel:.3f}m/s, " +
                         f"Pole angle: {pole_angle:.3f}rad, " +
