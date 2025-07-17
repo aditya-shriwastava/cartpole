@@ -70,7 +70,7 @@ cartpole --help
 
 ### DQN
 <div align="center">
-  <img src="imgs/mpc.gif" alt="DQN Agent Demo" width="600"/>
+  <img src="imgs/dqn.gif" alt="DQN Agent Demo" width="600"/>
   <br>
   <em><strong>Reward Achieved: inf</strong></em>
 </div>
