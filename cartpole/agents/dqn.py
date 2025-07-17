@@ -45,7 +45,7 @@ def main():
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     save_dir = f"runs/dqn/{timestamp}"
     os.makedirs(save_dir, exist_ok=True)
-    
+
     # Create symlink to latest run
     latest_link = "runs/dqn/latest"
     if os.path.islink(latest_link):
@@ -98,7 +98,7 @@ def main():
         render=False,
         verbose=1
     )
-    
+
     print("[INFO]: Starting Learning Process...")
     model.learn(total_timesteps=args.training_steps, callback=eval_callback)
     print("[INFO]: Done Learning.")
