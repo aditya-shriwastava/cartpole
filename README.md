@@ -48,7 +48,7 @@ cartpole --help
 ## Controls to implement
 * [x] PID (Simplest Control, Just works in many cases)
 * [x] MPC (Receding horizon optimal control, Go to classical control approach for most robotics problems)
-* [ ] DQN (Simple, Sample Efficient, First approach to show good results on atari games)
+* [x] DQN (Simple, Sample Efficient, First approach to show good results on atari games)
 * [ ] PPO (Go to approach for most of the robotics control problem in simulator, Wall clock time efficient)
 * [ ] SAC (Sample Efficient)
 
