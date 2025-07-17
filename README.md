@@ -54,8 +54,8 @@ train-dqn --help # Similarly for PPO & SAC
 * [x] PID (Simplest Control, Just works in many cases)
 * [x] MPC (Receding horizon optimal control, Go to classical control approach for most robotics problems)
 * [x] DQN (Simple, Sample Efficient, First approach to show good results on atari games)
-* [ ] PPO (Go to approach for most of the robotics control problem in simulator, Wall clock time efficient)
-* [ ] SAC (Sample Efficient)
+* [x] PPO (Go to approach for most of the robotics control problem in simulator, Wall clock time efficient)
+* [x] SAC (Sample Efficient)
 
 ## Results
 
