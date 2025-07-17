@@ -1,5 +1,6 @@
 # venv
 .venv
+runs
 
 # Mujoco
 MJDATA.TXT

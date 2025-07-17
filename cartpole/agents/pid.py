@@ -34,8 +34,8 @@ class PID(Agent):
     def get_cmd(
         self,
         cart_pos: float,
-        pole_angle: float,
         cart_vel: float,
+        pole_angle: float,
         pole_angular_vel: float
     ) -> float:
         # Primary control: Keep pole upright (angle = 0)

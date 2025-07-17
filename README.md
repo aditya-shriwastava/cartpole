@@ -28,7 +28,7 @@ cartpole --help
 ## MDP problem formulation
 1. Action Space:
     * Continuous in range [-3,3]
-    * Represents force applied to the cart.
+    * Represents force/100 (i.e. 100 is the gear ratio) applied to the cart.
 2. Observation Space:
     * Position of the cart in range [-1, 1]. Represemnts distance from center in meters.
     * Angular position of the pole in range [-pi/2, pi/2]. Represents angle wrt upright position in radians.
@@ -64,6 +64,13 @@ cartpole --help
 ### MPC
 <div align="center">
   <img src="imgs/mpc.gif" alt="MPC Agent Demo" width="600"/>
+  <br>
+  <em><strong>Reward Achieved: inf</strong></em>
+</div>
+
+### DQN
+<div align="center">
+  <img src="imgs/mpc.gif" alt="DQN Agent Demo" width="600"/>
   <br>
   <em><strong>Reward Achieved: inf</strong></em>
 </div>
