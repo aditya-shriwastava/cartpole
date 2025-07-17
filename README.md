@@ -2,30 +2,30 @@
 > Can we balance the pole by applying forces to the cart
 
 ## Getting Started
-1. **Clone the repository**
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/aditya-shriwastava/cartpole.git
 cd cartpole
 ```
 
-2. **Create and activate a virtual environment**
+2. **Create and activate a virtual environment:**
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. **Install dependencies**
+3. **Install dependencies:**
 ```bash
-pip install .
+pip install -e .
 ```
 
 4. **Usage**
-After installation, you can run cartpole with:
+After installation, you can run cartpole, check:
 ```bash
 cartpole --help
 ```
 
-4. **Training RL agents**
+4. **Training RL agents, check:**
 ```bash
 train-dqn --help # Similarly for PPO & SAC
 ```
