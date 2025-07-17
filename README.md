@@ -32,7 +32,7 @@ train-dqn --help # Similarly for PPO & SAC
 
 ## MDP problem formulation
 1. Action Space:
-    * Continuous in range [-3,3]
+    * Continuous in range [-3,3], except for DQN its discretized into 11 actions.
     * Represents force/100 (i.e. 100 is the gear ratio) applied to the cart.
 2. Observation Space:
     * Position of the cart in range [-1, 1]. Represemnts distance from center in meters.
